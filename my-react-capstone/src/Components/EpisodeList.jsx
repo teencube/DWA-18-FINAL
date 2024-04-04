@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+/*import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getShow } from '../Components/api';
 
@@ -32,4 +32,4 @@ function EpisodeList() {
   )
 }
 
-export default EpisodeList;
+export default EpisodeList;*/

@@ -1,49 +1,61 @@
-//import  { useState} from 'react'
-//import { Container, TextField, Button } from '@mui/material';
+import  { useState } from 'react';
+import { supabase } from '../../Client';
 
-function Login() {
-  //const [email, setEmail] = useState('');
- // const [password, setPassword] = useState('');
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-  //const handleLogin = () => {
-   /* <PrivateRoute
-    path="/favorites"
-    component={Favorites}
-    isLoggedIn={isLoggedIn}
-  />
-  <PrivateRoute
-    path="/episode/:showId/:seasonId/:episodeId"
-    component={EpisodeList}
-    isLoggedIn={isLoggedIn}
-  />*/
-  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Sign in with Supabase
+      const { user, error } = await supabase.auth.signIn({
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      alert('Login successful!');
+      // Redirect or perform any other action upon successful login
+    } catch (error) {
+      alert('Login failed. Please check your email and password.');
+      console.error('Login error:', error.message);
+    }
+  };
 
   return (
-    <div>
-      
-      <h5>Login</h5 >  
-      
-      
-      </div>
-    /*<Container>
-      <TextField
-        label="Email"
-        variant="outlined"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+    <form onSubmit={handleLogin}>
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
       />
-      <TextField
-        label="Password"
-        variant="outlined"
+      <input
         type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
       />
-      <Button variant="contained" onClick={handleLogin}>Login</Button>
-    </Container>
-    */
+      <button type="submit">Log In</button>
+    </form>
   );
-}
+};
 
 export default Login;
-
