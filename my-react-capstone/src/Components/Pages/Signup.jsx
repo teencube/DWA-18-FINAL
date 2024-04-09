@@ -1,6 +1,6 @@
-import  { useState } from 'react';
-import { supabase } from '../../Client';
-
+import { useState } from 'react';
+import styled from 'styled-components';
+import  supabase  from '../../Client';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -47,45 +47,82 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSignUp}>
-      <input
-        type="text"
-        name="fullName"
-        placeholder="Full Name"
-        value={formData.fullName}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="surname"
-        placeholder="Surname"
-        value={formData.surname}
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm Password"
-        value={formData.confirmPassword}
-        onChange={handleChange}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+    <Container>
+      <Form onSubmit={handleSignUp}>
+        <Input
+          type="text"
+          name="fullName"
+          placeholder="Full Name"
+          value={formData.fullName}
+          onChange={handleChange}
+        />
+        <Input
+          type="text"
+          name="surname"
+          placeholder="Surname"
+          value={formData.surname}
+          onChange={handleChange}
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <Input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+        />
+        <Button type="submit">Sign Up</Button>
+      </Form>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const Input = styled.input`
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
 
 export default SignUp;
