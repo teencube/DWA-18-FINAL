@@ -61,7 +61,7 @@ const Search = () => {
     <Container>
       <SearchInput
         type="text"
-        placeholder="Search by show name..."
+        placeholder="Search ..."
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
       />

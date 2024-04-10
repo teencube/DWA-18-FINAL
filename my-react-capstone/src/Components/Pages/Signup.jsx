@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import  supabase  from '../../Client';
+import { Link } from 'react-router-dom';
+import supabase from '../../Client';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      // Perform password match validation
+      //  password match validation
       if (formData.password !== formData.confirmPassword) {
         throw new Error('Passwords do not match');
       }
@@ -39,7 +40,8 @@ const SignUp = () => {
       }
 
       alert('Sign up successful!');
-      // Redirect or perform any other action upon successful sign-up
+      // Redirect to home page
+      window.location.href = '/';
     } catch (error) {
       alert('Sign up failed. Please try again.');
       console.error('Sign up error:', error.message);
@@ -85,6 +87,7 @@ const SignUp = () => {
           onChange={handleChange}
         />
         <Button type="submit">Sign Up</Button>
+        <StyledLink to="/login">If you have an account already, log in</StyledLink>
       </Form>
     </Container>
   );
@@ -123,6 +126,12 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #007bff;
+  margin-top: 10px;
 `;
 
 export default SignUp;

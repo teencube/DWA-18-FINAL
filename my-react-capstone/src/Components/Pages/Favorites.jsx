@@ -24,7 +24,7 @@ const Favorites = () =>{
           {favorites.map((favoriteId) => (
             <PreviewCard
               key={favoriteId}
-              {...getShowById(favoriteId)} // Assuming you have a function to get show details by ID
+              {...getShowById(favoriteId)} 
               isFavorite
               addToFavorites={addToFavorites}
               removeFromFavorites={removeFromFavorites}

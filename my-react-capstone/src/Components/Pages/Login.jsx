@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import  { useState } from 'react';
 import styled from 'styled-components';
-import supabase  from '../../Client';
+import { Link } from 'react-router-dom';
+import supabase from '../../Client';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -20,8 +21,8 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // Sign in with Supabase
-      const { user, error } = await supabase.auth.signIn({
+      
+      const { user, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password
       });
@@ -31,7 +32,7 @@ const Login = () => {
       }
 
       alert('Login successful!');
-      // Redirect or perform any other action upon successful login
+      
     } catch (error) {
       alert('Login failed. Please check your email and password.');
       console.error('Login error:', error.message);
@@ -56,6 +57,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <Button type="submit">Log In</Button>
+        <StyledLink to="/signup">If you don't have an account, sign up</StyledLink>
       </Form>
     </Container>
   );
@@ -94,6 +96,12 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #007bff;
+  margin-top: 10px;
 `;
 
 export default Login;

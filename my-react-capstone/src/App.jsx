@@ -3,7 +3,6 @@ import styled,{ThemeProvider} from "styled-components";
 import { lightTheme, darkTheme } from "./Theme";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
-
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Pages/Home";
 import Search from "./Components/Pages/Search";

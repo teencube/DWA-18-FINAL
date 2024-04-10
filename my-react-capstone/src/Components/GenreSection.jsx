@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import PreviewCard from '../PreviewCard';
 
@@ -6,6 +6,9 @@ const GenreSection = ({ genre, shows }) => {
   const [selectedShow, setSelectedShow] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [numToShow, setNumToShow] = useState(3);
+  const [showAllVisible, setShowAllVisible] = useState(shows.length > numToShow);
 
   const handleShowClick = (showId) => {
     setSelectedShow(showId);
@@ -22,11 +25,23 @@ const GenreSection = ({ genre, shows }) => {
     setSelectedEpisode(episodeId);
   };
 
+  const handleShowAll = () => {
+    setNumToShow(shows.length);
+    setShowAll(true);
+    setShowAllVisible(false);
+  };
+
+  const handleShowLess = () => {
+    setNumToShow(3);
+    setShowAll(false);
+    setShowAllVisible(true);
+  };
+
   return (
     <Container>
       <Topic>{getTopic(genre)}</Topic>
       <ShowContainer>
-        {shows.slice(0, 3).map(show => (
+        {shows.slice(0, numToShow).map(show => (
           <PreviewCard
             key={show.id}
             {...show}
@@ -34,7 +49,7 @@ const GenreSection = ({ genre, shows }) => {
           />
         ))}
       </ShowContainer>
-      {selectedShow && (
+      {showAll && selectedShow && (
         <SeasonContainer>
           {shows.find(show => show.id === selectedShow).seasons.map(season => (
             <Season key={season.number}>
@@ -59,7 +74,12 @@ const GenreSection = ({ genre, shows }) => {
           Play Episode
         </PlayButton>
       )}
-      <ShowAllButton>Show All</ShowAllButton>
+      {showAllVisible && !showAll && (
+        <ShowAllButton onClick={handleShowAll}>Show All</ShowAllButton>
+      )}
+      {showAll && (
+        <ShowLessButton onClick={handleShowLess}>Show Less</ShowLessButton>
+      )}
     </Container>
   );
 };
@@ -71,9 +91,6 @@ const Container = styled.div`
 const Topic = styled.h1`
   font-size: 1.5em;
   margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 const ShowContainer = styled.div`
@@ -93,6 +110,20 @@ const ShowAllButton = styled.button`
 
   &:hover {
     background-color: #0056b3;
+  }
+`;
+
+const ShowLessButton = styled.button`
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c82333;
   }
 `;
 
