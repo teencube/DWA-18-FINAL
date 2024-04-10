@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>All PODSHOWS</h1>
+      <h1>All SHOWS</h1>
       <div style={{ maxHeight: '80vh', overflowY: 'scroll', width: '100%' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', padding: '10px' }}>
           {shows.map((show, index) => (

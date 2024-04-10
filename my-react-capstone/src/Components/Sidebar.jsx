@@ -1,7 +1,7 @@
 
 
 import {  List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Search as SearchIcon, Home as HomeIcon, Favorite as FavoriteIcon, Login as LoginIcon, PersonAdd as SignUpIcon,  } from '@mui/icons-material';
+import { Search as SearchIcon, Home as HomeIcon, Favorite as FavoriteIcon, Login as LoginIcon, PersonAdd as SignUpIcon, BlurCircularRounded,  } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 
@@ -16,10 +16,15 @@ const SideBarItems = [
  name : "Search",
  icon : <SearchIcon/>
 },
+ 
 
- {link : "/Favorites",
+{link : "/Favorites",
  name : "Favorites",
  icon : <FavoriteIcon/>
+},
+{link : "/PodShows",
+ name : "PodShows",
+ icon : <BlurCircularRounded/>
 },
 
  {link : "/Login",

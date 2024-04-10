@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Pages/Home";
 import Search from "./Components/Pages/Search";
 import Favorites from "./Components/Pages/Favorites";
+import PodShows from "./Components/Pages/PodShows";
 import Login from "./Components/Pages/Login";
 import SignUp from "./Components/Pages/Signup";
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/Search" element={<Search />} />
             <Route path="/" element={<Home />} />
             <Route path="/Favorites" element={<Favorites />} />
+            <Route path="/PodShows" element={<PodShows/>} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<SignUp />} />
           </Routes>
