@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 const PodShows = ({ show }) => {
   const [selectedSeasonId, setSelectedSeasonId] = useState(null);
